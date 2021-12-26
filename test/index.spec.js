@@ -28,8 +28,11 @@ describe('POST /tasks', () => {
     
 
     // should respond with a json object containing the new task with an id
-    test('should respond with a json object containing the new task with an id', () => {
-        const response = await request(app).post('/tasks').send()
+    test('should respond with a json object containing the new task with an id', async () => {
+        const response = await request(app).post('/tasks').send({
+            title: 'test',
+            description: 'test',
+        })
         expect(response.body.id).toBeDefined();
     })
     
