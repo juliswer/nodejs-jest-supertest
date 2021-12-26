@@ -41,8 +41,15 @@ describe('POST /tasks', () => {
     
     describe('when title and description are mising', () => {
         test('should respond with a 400 status code', async () => {
-            const response = await request(app).post('/tasks').send({});
-            expect(response.statusCode).toBe(400);
+            const fields = [
+                {},
+                {title: 'Test task'},
+                {description: 'Test description'},
+            ]
+            for (const body of fields) {
+                const response = await request(app).post('/tasks').send(body);
+                expect(response.statusCode).toBe(400);
+            }
         });
     })
 })
